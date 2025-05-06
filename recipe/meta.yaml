@@ -1,5 +1,5 @@
 {% set name = "mget3" %}
-{% set version = "3.2.0" %}
+{% set version = "3.3.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/mget3-{{ version }}.tar.gz
-  sha256: 9f72dd39d5f53684a20b11a398f042ccf159d0dc16d71d22f5ead8b8a89b2fca
+  sha256: 07c3a8fe6813b18d2947ea4b998664823fa176f74add05bd13020e08ee00b9cb
 
 build:
   # Our main reason for releasing mget3 on conda-forge is to support users of
