@@ -45,6 +45,7 @@ requirements:
     - packaging
     - pandas
     - pyarrow
+    - pyhdf
     - pyparsing
     - python-dateutil
     - requests
