@@ -17,7 +17,7 @@ build:
   # maintain it, but we'll enable it if a Mac maintainer joins the project.
   skip: true  # [py<39 or py>=314 or py2k or osx]
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
-  number: 0
+  number: 1
 
 requirements:
   build:
