@@ -1,5 +1,5 @@
 {% set name = "mget3" %}
-{% set version = "3.4.1" %}
+{% set version = "3.5.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,15 +7,20 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/mget3-{{ version }}.tar.gz
-  sha256: cd3648799dedf8a37ea50d0f80beb6bb592ca176b17770afb1d2426896b32bda
+  sha256: 4a72f8b1af0f2efd04c71f575ba2491c3b0e865a24dfe80f158a20de65f18986
 
 build:
   # Our main reason for releasing mget3 on conda-forge is to support users of
-  # ArcGIS Pro 3.2.2 and later. ArcGIS Pro 3.2.2 includes Anaconda Python 3.9
-  # or later and only runs on Windows. So we're skipping Python < 3.9. We're
-  # skipping osx because we don't have Mac hardware or expertise so cannot
-  # maintain it, but we'll enable it if a Mac maintainer joins the project.
-  skip: true  # [py<39 or py>=314 or py2k or osx]
+  # ArcGIS Pro, which only runs on Windows. Because of this, we're skipping
+  # osx because we don't have Mac hardware or expertise, so cannot maintain
+  # it, but we'll enable it if a Mac maintainer joins the project. The minimum
+  # version of ArcGIS Pro we currently support is 3.5.0, which shipped with
+  # Python 3.13. While it is possible to build mget3 for older versions of
+  # Python, it depends on packages that have stopped releasing for those older
+  # versions, making it increasingly problematic to continue to support new
+  # versions of mget3 for those older versions. Nevertheless, we will continue
+  # building for Python 3.9 and later.
+  skip: true  # [py<39 or py>=315 or py2k or osx]
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
   number: 0
 
@@ -27,7 +32,7 @@ requirements:
     - {{ stdlib("c") }}
   host:
     - python
-    - setuptools >=64
+    - setuptools >=77.0
     - setuptools-scm >=8
     - wheel
     - docutils
@@ -83,6 +88,9 @@ requirements:
     # will run a newer version of Python, in which case these hack will not be
     # used.
     - setuptools ~=70.0   # [py<310]
+    # Otherwise we will use setuptools >=77.0, consistent with our
+    # pyproject.toml's use of the new license metadata.
+    - setuptools >=77.0   # [py>=310]
 
 test:
   imports:
