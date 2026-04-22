@@ -22,7 +22,7 @@ build:
   # building for Python 3.9 and later.
   skip: true  # [py<39 or py>=315 or py2k or osx]
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
-  number: 0
+  number: 1
 
 requirements:
   build:
