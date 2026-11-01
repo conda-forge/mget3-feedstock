@@ -6,7 +6,7 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/mget3-{{ version }}.tar.gz
+  url: https://files.pythonhosted.org/packages/source/{{ name[0] }}/{{ name }}/mget3-{{ version }}.tar.gz
   sha256: f5c5ef3fb75c08ffbe011342c55dc6e17e4312687a5570b3d7113645a53b973d
 
 build:
@@ -22,7 +22,7 @@ build:
   # building for Python 3.9 and later.
   skip: true  # [py<39 or py>=315 or py2k or osx]
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
-  number: 1
+  number: 2
 
 requirements:
   build:
